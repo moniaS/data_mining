@@ -25,7 +25,6 @@ def main():
     print("Numery zarekomendowanych stron:")
     print(recommend_pages(new_user_attributes, clustering_result[['Cluster '+str(closest_cluster_index)]]))
 
-
 def create_new_user():
     number_of_attributes = 28
     np.random.seed(0)
@@ -35,7 +34,6 @@ def load_clustering_result():
     col_names = ['Cluster 0', 'Cluster 1', 'Cluster 2', 'Cluster 3', 'Cluster 4', 'Cluster 5', 'Cluster 6']
     cluster_result = pd.read_csv('cluster_result.txt', names = col_names, sep=',')
     return cluster_result
-    # print(cluster_result)
 
 def count_AND_operation(user_attributes, clustering_result):
     result = []
@@ -87,19 +85,12 @@ def found_closest_cluster(indicators):
 
 def recommend_pages(user_attributes, closest_cluster_result):
     pages = []
-    print(type(closest_cluster_result))
 
     for i, row in closest_cluster_result.iterrows():
         if ((user_attributes[i] == False) & (row.bool() == True )):
-            pages.append(i)
-
-
-
-    # for i in range(len(user_attributes)):
-    #     
+            pages.append(i)   
 
     return pages
-
 
 if __name__ == '__main__':
     main()
